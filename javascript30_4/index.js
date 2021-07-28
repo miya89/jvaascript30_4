@@ -103,17 +103,23 @@ console.table(sortedInventors);
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-const category = document.querySelector(".mw-category");
-const links = Array.from(category.querySelectorAll("a"));
-const de = links
-                         .map((link) => link.textContent);
-                         .filter(street => street.includes("de"));
+// const category = document.querySelector(".mw-category");
+// const links = Array.from(category.querySelectorAll("a"));
+// const de = links
+//   .map((link) => link.textContent)
+//   .filter((street) => street.includes("de"));
 
-
-console.log(links);
+// console.log(de);
 
 // 7. sort Exercise
 // Sort the people alphabetically by last name
+
+const sortedPeople = people.sort((a, b) => {
+  const [aLast, aFirst] = a.split(", ");
+  const [bLast, bFirst] = b.split(", ");
+  return aLast > bLast ? 1 : -1;
+});
+console.table(sortedPeople);
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
@@ -133,3 +139,13 @@ const data = [
   "car",
   "truck",
 ];
+
+const instances = data.reduce((obj, item) => {
+  if (!obj[item]) {
+    obj[item] = 0;
+  }
+  obj[item]++;
+  return obj;
+}, {});
+
+console.log(instances);
